@@ -6,64 +6,85 @@
 <title>Wedding Invitation: Aqib and Fiza</title>
 <meta name="description" content="You are warmly invited to the wedding of Mohammad Aqib Ansari and Fiza Ansari, 28 November 2026.">
 <meta property="og:title" content="Wedding Invitation: Aqib and Fiza">
-<meta property="og:description" content="28 and 29 November 2026, Usrauli, Kadipur, Jaunpur">
+<meta property="og:description" content="28 and 29 November 2026, Usrauli, Madiyahoon, Jaunpur">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Nastaliq+Urdu:wght@400;500&family=Amiri:ital,wght@0,400;0,700;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --night: #0a1131;
-    --indigo: #16245a;
-    --gold: #e3b95b;
-    --gold-hi: #f7de9f;
-    --pearl: #f6ece3;
-    --mist: #aebbdc;
-    --teal: #55cdbd;
+    --night: #031c18;
+    --deep: #05302a;
+    --gold: #d9b45f;
+    --gold-hi: #f0d58a;
+    --gold-lo: #b8934a;
+    --ivory: #f1e8cf;
+    --mist: #a9c2b8;
     --serif: "Amiri", "Times New Roman", serif;
-    --sans: "Outfit", system-ui, sans-serif;
-    --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23e3b95b' stroke-opacity='.09' stroke-width='1'%3E%3Crect x='14' y='14' width='28' height='28'/%3E%3Crect x='14' y='14' width='28' height='28' transform='rotate(45 28 28)'/%3E%3C/g%3E%3C/svg%3E");
+    --sans: "Jost", system-ui, sans-serif;
+    --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23d9b45f' stroke-opacity='.12' stroke-width='1'%3E%3Crect x='16' y='16' width='32' height='32'/%3E%3Crect x='16' y='16' width='32' height='32' transform='rotate(45 32 32)'/%3E%3Ccircle cx='32' cy='32' r='5'/%3E%3C/g%3E%3C/svg%3E");
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body {
     font-family: var(--sans);
-    color: var(--pearl);
+    color: var(--ivory);
     line-height: 1.5;
     display: grid;
     place-items: center;
-    background:
-      radial-gradient(1.5px 1.5px at 12% 18%, #fff9 50%, transparent 51%),
-      radial-gradient(1px 1px at 78% 12%, #fff8 50%, transparent 51%),
-      radial-gradient(1.5px 1.5px at 88% 46%, #fff7 50%, transparent 51%),
-      radial-gradient(1px 1px at 8% 72%, #fff8 50%, transparent 51%),
-      radial-gradient(1.5px 1.5px at 62% 88%, #fff7 50%, transparent 51%),
-      radial-gradient(1px 1px at 35% 60%, #fff6 50%, transparent 51%),
-      radial-gradient(ellipse 90% 60% at 50% 0%, var(--indigo), transparent 75%),
-      var(--night);
+    background: var(--tile), radial-gradient(ellipse 80% 60% at 50% 0%, #0a3d35, transparent 70%), var(--night);
     -webkit-font-smoothing: antialiased;
   }
 
-  /* The card: one screen, swipeable pages */
+  /* ---------- The card: one screen per page, swipe sideways ---------- */
   .card {
     position: relative;
     width: min(100%, 27rem);
     height: 100dvh;
     display: grid;
     grid-template-rows: minmax(0, 1fr) auto;
-    background: var(--tile), linear-gradient(180deg, #121e4d 0%, #0d1740 100%);
+    background: var(--tile), linear-gradient(180deg, var(--deep) 0%, #04251f 70%);
     overflow: hidden;
   }
   .card::before {
-    content: ""; position: absolute; inset: .55rem; z-index: 2; pointer-events: none;
-    border: 1px solid rgba(227,185,91,.38);
+    content: ""; position: absolute; inset: .55rem; z-index: 3; pointer-events: none;
+    border: 1px solid rgba(217,180,95,.4);
   }
   @media (min-width: 30rem) and (min-height: 44rem) {
-    .card { height: min(100dvh - 2.5rem, 50rem); border: 1px solid rgba(227,185,91,.5); box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+    .card {
+      height: min(100dvh - 2.5rem, 50rem);
+      border: 1px solid rgba(217,180,95,.45);
+      outline: 1px solid rgba(217,180,95,.18);
+      outline-offset: 6px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+    }
+  }
+
+  /* Parallax star behind everything: drifts slower than the pages */
+  .bgstar {
+    position: absolute; left: 50%; top: 44%; z-index: 0; pointer-events: none;
+    width: 135%; aspect-ratio: 1;
+    translate: calc(-50% - var(--sx, 0px) * .3) -50%;
+  }
+  .bgstar svg { width: 100%; height: 100%; }
+
+  .dust { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .dust i {
+    position: absolute; bottom: -12px; left: var(--x);
+    width: var(--s); height: var(--s); border-radius: 50%;
+    background: radial-gradient(circle, #fbe7a6 0%, #d9b45f 55%, transparent 72%);
+    opacity: 0;
+    animation: dust var(--t) linear var(--dl) infinite;
+  }
+  @keyframes dust {
+    0% { transform: translate(0,0); opacity: 0; }
+    12% { opacity: .8; }
+    88% { opacity: .45; }
+    100% { transform: translate(var(--dx), -105dvh); opacity: 0; }
   }
 
   .track {
-    display: flex;
-    min-height: 0;
+    position: relative; z-index: 1;
+    display: flex; min-height: 0;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
@@ -78,7 +99,7 @@
     scroll-snap-stop: always;
     display: flex; flex-direction: column;
     overflow-y: auto;
-    padding: 1.6rem 1.6rem 1rem;
+    padding: 1.2rem 1.6rem 1rem;
     text-align: center;
     scrollbar-width: none;
   }
@@ -88,65 +109,77 @@
   .ar { font-family: var(--serif); direction: rtl; line-height: 1.9; }
   .star { width: 1.05rem; height: 1.05rem; color: var(--gold); flex: none; }
   .divider { display: flex; align-items: center; gap: .8rem; max-width: 11rem; margin: .9rem auto; }
-  .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(227,185,91,.7)); }
+  .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-lo)); }
   .divider::after { transform: scaleX(-1); }
 
-  /* ---------- Page 1: cover ---------- */
-  .cover .inner { padding-top: 5.5rem; }
-  .lantern {
-    position: absolute; top: -.2rem; z-index: 1;
-    transform-origin: 50% 0;
-    filter: drop-shadow(0 0 12px rgba(247,222,159,.5));
+  /* ---------- Page 1: mihrab arch cover ---------- */
+  .arch {
+    position: relative;
+    width: min(100%, 21rem, calc((100dvh - 8.8rem) * .714));
+    aspect-ratio: 300 / 420;
+    margin: 0 auto;
+    container-type: inline-size;
   }
-  .lantern.l1 { left: 11%; width: 3.6rem; }
-  .lantern.l2 { right: 14%; width: 2.7rem; }
-  .moon { position: absolute; top: 1.7rem; left: 50%; width: 2.6rem; height: 2.6rem; margin-left: -1.3rem; color: var(--gold); }
-  .bismillah { font-size: 1.85rem; color: var(--gold-hi); line-height: 1.8; }
-  .bismillah-en { font-size: .85rem; color: var(--mist); margin-top: -.1rem; }
-  .names { margin-top: 1.1rem; font-family: var(--serif); line-height: .95; }
+  .arch > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .arch-content {
+    position: absolute; inset: 0;
+    padding-top: 23%;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .crescent { width: 8cqw; height: 8cqw; color: var(--gold); margin-bottom: 2cqw; }
+  .bismillah { font-size: 7cqw; line-height: 1.75; color: var(--gold-hi); }
+  .bismillah span { display: block; }
+  .bismillah-en { font-size: 3.3cqw; line-height: 1.5; color: var(--mist); max-width: 60cqw; margin-top: 1cqw; }
+  .names { margin-top: 7cqw; font-family: var(--serif); line-height: 1; }
   .names b {
     display: block;
     font-family: "Great Vibes", "Amiri", cursive;
     font-weight: 400;
-    font-size: clamp(4.2rem, 24vw, 6.4rem);
-    line-height: 1.05;
-    padding: .05em .15em;
+    font-size: 16.5cqw;
+    line-height: 1.02;
+    padding: .2em .14em .02em;
     color: var(--gold-hi);
-    background: linear-gradient(180deg, #fff3d1 0%, var(--gold-hi) 45%, var(--gold) 100%);
+    background: linear-gradient(100deg, #b8934a 0%, #d9b45f 30%, #fff1c2 50%, #d9b45f 70%, #b8934a 100%);
+    background-size: 220% 100%;
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .names i { display: block; font-family: var(--serif); font-size: 2rem; line-height: 1; color: var(--gold); font-style: italic; margin: .1rem 0; }
-  .cover-title { font-size: 1.8rem; color: var(--gold); margin-top: .9rem; }
-  .cover-sub { font-size: .95rem; color: var(--mist); }
+  .names i { display: block; font-family: var(--serif); font-size: 6.5cqw; line-height: 1; color: var(--gold); font-style: italic; }
+  .arch-title { font-size: 6cqw; line-height: 1.6; color: var(--gold); margin-top: 3cqw; }
+  .arch-sub { font-size: 3.4cqw; color: var(--ivory); margin-top: -.5cqw; }
+  .hint { margin-top: .7rem; font-size: .88rem; color: var(--mist); display: inline-flex; align-items: center; gap: .35rem; }
+  .hint svg { width: 1rem; height: 1rem; color: var(--gold); }
 
   /* ---------- Page 2: couple ---------- */
   .salaam { font-size: 1.5rem; color: var(--gold-hi); }
   .invite { color: var(--mist); font-size: .98rem; max-width: 19rem; margin: .1rem auto 1.1rem; }
   .person { font-family: var(--serif); font-size: clamp(1.9rem, 8.4vw, 2.4rem); line-height: 1.15; }
   .of { color: var(--mist); font-size: .95rem; margin-top: .15rem; }
-  .verse { margin-top: 1.3rem; padding-top: 1.1rem; border-top: 1px solid rgba(227,185,91,.28); }
+  .verse { margin-top: 1.3rem; padding-top: 1.1rem; border-top: 1px solid rgba(217,180,95,.3); }
   .verse .ar { font-size: 1.15rem; color: var(--gold-hi); line-height: 2; }
-  .verse p.en { font-family: var(--serif); font-style: italic; font-size: .98rem; color: var(--pearl); line-height: 1.4; margin-top: .25rem; }
-  .verse small { display: block; font-size: .8rem; color: var(--mist); margin-top: .2rem; }
+  .verse p.en { font-family: var(--serif); font-style: italic; font-size: .98rem; line-height: 1.4; margin-top: .25rem; }
+  .verse p.ur { font-family: "Noto Nastaliq Urdu", "Amiri", serif; direction: rtl; font-size: .95rem; line-height: 2.2; color: var(--ivory); margin-top: .2rem; }
+  .verse small { display: block; font-family: "Noto Nastaliq Urdu", "Amiri", serif; direction: rtl; font-size: .8rem; line-height: 2; color: var(--mist); margin-top: .1rem; }
 
   /* ---------- Page 3: events and venue ---------- */
   h2 { font-family: var(--serif); font-weight: 400; font-size: 1.55rem; color: var(--gold); margin-bottom: .6rem; line-height: 1.2; }
   .ev {
     display: grid; grid-template-columns: 5rem 1fr; align-items: center; gap: .9rem;
     text-align: left;
-    border: 1px solid rgba(227,185,91,.5);
-    background: rgba(227,185,91,.07);
-    padding: .8rem 1rem;
+    border: 1px solid rgba(217,180,95,.55);
+    outline: 1px solid rgba(217,180,95,.22);
+    outline-offset: -6px;
+    background: rgba(217,180,95,.06);
+    padding: .9rem 1.1rem;
     margin-top: .65rem;
   }
-  .ev-date { text-align: center; border-right: 1px solid rgba(227,185,91,.35); padding-right: .8rem; }
+  .ev-date { text-align: center; border-right: 1px solid rgba(217,180,95,.35); padding-right: .8rem; }
   .ev-date b { display: block; font-family: var(--serif); font-weight: 400; font-size: 3rem; line-height: 1; color: var(--gold-hi); }
   .ev-date span { font-size: .8rem; color: var(--mist); }
   .ev h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.3; }
-  .ev h3 .ar { color: var(--teal); font-size: 1.3rem; margin-left: .45rem; display: inline-block; }
+  .ev h3 .ar { color: var(--gold); font-size: 1.3rem; margin-left: .45rem; display: inline-block; }
   .ev p { font-size: .92rem; color: var(--mist); line-height: 1.4; }
-  .ev p strong { color: var(--pearl); font-weight: 500; }
+  .ev p strong { color: var(--ivory); font-weight: 500; }
   .venue { margin-top: 1.2rem; }
   .venue .addr { font-family: var(--serif); font-size: 1.25rem; line-height: 1.35; }
   .venue .addr small { display: block; font-family: var(--sans); font-size: .92rem; color: var(--mist); }
@@ -154,69 +187,94 @@
   .btn {
     font: 500 .92rem var(--sans); text-decoration: none; cursor: pointer;
     color: var(--gold-hi); background: transparent;
-    border: 1px solid rgba(227,185,91,.7); border-radius: 999px;
+    border: 1px solid var(--gold-lo); border-radius: 999px;
     padding: .55rem 1.1rem;
-    transition: background .2s;
+    transition: background .2s, transform .2s, box-shadow .2s;
   }
-  .btn:hover { background: rgba(227,185,91,.15); }
-  .btn.primary { background: var(--gold); color: #251b05; border-color: var(--gold); font-weight: 600; }
-  .btn.primary:hover { background: var(--gold-hi); }
-  .btn:focus-visible, .nav button:focus-visible { outline: 3px solid var(--pearl); outline-offset: 3px; }
+  .btn:hover { background: rgba(217,180,95,.15); transform: translateY(-1px); }
+  .btn.primary { background: var(--gold); color: #231a05; border-color: var(--gold); font-weight: 600; }
+  .btn.primary:hover { background: var(--gold-hi); box-shadow: 0 6px 18px rgba(217,180,95,.3); }
+  .btn:focus-visible, .nav button:focus-visible { outline: 3px solid var(--ivory); outline-offset: 3px; }
 
   /* ---------- Page 4: compliments, dua, timer ---------- */
-  .list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: .1rem 1rem; max-width: 20rem; margin: 0 auto; font-family: var(--serif); font-size: 1.15rem; }
+  .list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: .1rem 1rem; max-width: 20rem; margin: 0 auto; font-family: var(--serif); font-size: .8rem; white-space: nowrap; }
   .dua { margin-top: 1.1rem; }
   .dua .ar { font-size: 1.2rem; color: var(--gold-hi); line-height: 2; }
   .dua p.en { font-family: var(--serif); font-style: italic; font-size: .98rem; line-height: 1.4; max-width: 20rem; margin: 0 auto; }
   .closing { font-family: var(--serif); font-size: 1.3rem; margin-top: .8rem; line-height: 1.3; }
   .closing small { display: block; font-family: var(--sans); font-size: .85rem; color: var(--mist); }
-  .timer-wrap { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid rgba(227,185,91,.28); }
+  .timer-wrap { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid rgba(217,180,95,.3); }
   .timer-title { font-size: .85rem; color: var(--mist); margin-bottom: .5rem; }
   .timer { display: flex; justify-content: center; gap: .45rem; }
-  .cell { min-width: 3.5rem; padding: .4rem .25rem .3rem; border: 1px solid rgba(227,185,91,.45); background: rgba(227,185,91,.06); }
+  .cell { min-width: 3.5rem; padding: .4rem .25rem .3rem; border: 1px solid rgba(217,180,95,.5); background: rgba(217,180,95,.06); }
   .cell b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.45rem; line-height: 1.1; color: var(--gold-hi); font-variant-numeric: tabular-nums; }
   .cell span { display: block; font-size: .72rem; color: var(--mist); }
   .arrived { font-family: var(--serif); font-size: 1.35rem; color: var(--gold-hi); }
 
   /* ---------- Navigation ---------- */
   .nav {
-    position: relative; z-index: 3;
+    position: relative; z-index: 4;
     display: flex; align-items: center; justify-content: space-between;
     padding: .55rem 1.3rem calc(.9rem + env(safe-area-inset-bottom));
   }
   .nav button.arrow {
     width: 2.5rem; height: 2.5rem; border-radius: 50%;
-    border: 1px solid rgba(227,185,91,.6); background: transparent; color: var(--gold-hi);
+    border: 1px solid rgba(217,180,95,.65); background: transparent; color: var(--gold-hi);
     display: grid; place-items: center; cursor: pointer;
     transition: opacity .2s, background .2s;
   }
-  .nav button.arrow:hover:not(:disabled) { background: rgba(227,185,91,.15); }
+  .nav button.arrow:hover:not(:disabled) { background: rgba(217,180,95,.15); }
   .nav button.arrow:disabled { opacity: .25; cursor: default; }
   .nav svg { width: 1.1rem; height: 1.1rem; }
-  .dots { display: flex; gap: .55rem; }
-  .dots button { width: .6rem; height: .6rem; border-radius: 50%; border: 1px solid var(--gold); background: transparent; cursor: pointer; padding: 0; }
-  .dots button[aria-current="true"] { background: var(--gold); }
+  .dots { display: flex; gap: .5rem; align-items: center; }
+  .dots button { width: .6rem; height: .6rem; border-radius: 999px; border: 1px solid var(--gold); background: transparent; cursor: pointer; padding: 0; transition: width .3s ease, background .3s; }
+  .dots button[aria-current="true"] { width: 1.5rem; background: var(--gold); }
 
   @media (max-height: 640px) {
-    .cover .inner { padding-top: 4.5rem; }
-    .names b { font-size: 3.9rem; }
-    .bismillah { font-size: 1.55rem; }
-    .slide { padding-top: 1.1rem; }
+    .slide { padding-top: .8rem; }
   }
 
+  /* ---------- Motion (only when welcome) ---------- */
   @media (prefers-reduced-motion: no-preference) {
-    .lantern.l1 { animation: swing 5.5s ease-in-out infinite alternate; }
-    .lantern.l2 { animation: swing 4.4s ease-in-out -2s infinite alternate; }
-    @keyframes swing { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
+    /* Cover: the arch draws itself, then the lettering fades in */
+    .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.4s ease-out .2s forwards; }
+    .arch-content { opacity: 0; animation: fade 1.4s ease .9s forwards; }
+    .hint { opacity: 0; animation: fade 1s ease 2.3s forwards; }
+    .hint svg { animation: nudge 1.6s ease-in-out 3s infinite; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes fade { to { opacity: 1; } }
+    @keyframes nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+
+    .names b { animation: shimmer 6s ease-in-out 2.5s infinite; }
+    @keyframes shimmer { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+
+    .crescent { animation: glow 4s ease-in-out infinite; }
+    @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 0 rgba(240,213,138,0)); } 50% { filter: drop-shadow(0 0 6px rgba(240,213,138,.75)); } }
+
+    .bgstar svg { animation: spin 140s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Other pages: content rises in, one piece at a time */
+    .rise {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .8s ease, transform .9s cubic-bezier(.2,.7,.2,1);
+      transition-delay: var(--d, 0s);
+    }
+    .slide.in .rise { opacity: 1; transform: none; }
+
+    .cell b.pop { animation: pop .4s ease; }
+    @keyframes pop { 0% { transform: translateY(-4px); opacity: .35; } 100% { transform: none; opacity: 1; } }
   }
+  @media (prefers-reduced-motion: reduce) { .dust { display: none; } }
 </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <linearGradient id="cap" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#f7de9f"/><stop offset="1" stop-color="#b8903f"/>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0d58a"/>
+      <stop offset="1" stop-color="#b8934a"/>
     </linearGradient>
     <symbol id="star" viewBox="0 0 24 24">
       <g fill="none" stroke="currentColor" stroke-width="1.4">
@@ -225,54 +283,67 @@
       </g>
       <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
     </symbol>
-    <symbol id="lantern" viewBox="0 0 60 130">
-      <line x1="30" y1="0" x2="30" y2="20" stroke="#e3b95b" stroke-width="1.5"/>
-      <circle cx="30" cy="23" r="3.5" fill="none" stroke="#e3b95b" stroke-width="1.5"/>
-      <path d="M15 42 C17 34 25 29 30 28 C35 29 43 34 45 42 Z" fill="url(#cap)"/>
-      <rect x="13" y="42" width="34" height="5" rx="1" fill="url(#cap)"/>
-      <path d="M16 47 H44 L47 77 C47 91 38 101 30 107 C22 101 13 91 13 77 Z" fill="rgba(227,185,91,.18)" stroke="#e3b95b" stroke-width="1.4"/>
-      <path d="M23 54 H37 V77 C37 84 33 89 30 92 C27 89 23 84 23 77 Z" fill="#f7de9f" opacity=".9"/>
-      <line x1="30" y1="107" x2="30" y2="115" stroke="#e3b95b" stroke-width="1.5"/>
-      <path d="M30 114 L26 127 H34 Z" fill="url(#cap)"/>
-    </symbol>
   </defs>
 </svg>
 
-<main class="card">
+<main class="card" id="card">
+  <div class="bgstar" aria-hidden="true">
+    <svg viewBox="0 0 200 200" fill="none" stroke="#d9b45f" stroke-opacity=".13" stroke-width=".7">
+      <rect x="30" y="30" width="140" height="140"/>
+      <rect x="30" y="30" width="140" height="140" transform="rotate(30 100 100)"/>
+      <rect x="30" y="30" width="140" height="140" transform="rotate(60 100 100)"/>
+      <rect x="52" y="52" width="96" height="96"/>
+      <rect x="52" y="52" width="96" height="96" transform="rotate(45 100 100)"/>
+      <circle cx="100" cy="100" r="99"/>
+      <circle cx="100" cy="100" r="40"/>
+    </svg>
+  </div>
+  <div class="dust" id="dust" aria-hidden="true"></div>
+
   <div class="track" id="track" tabindex="0" aria-label="Invitation pages. Swipe or use the arrow keys.">
 
     <!-- Page 1 -->
-    <section class="slide cover" aria-label="Cover">
-      <svg class="lantern l1" viewBox="0 0 60 130" aria-hidden="true"><use href="#lantern"/></svg>
-      <svg class="lantern l2" viewBox="0 0 60 130" aria-hidden="true"><use href="#lantern"/></svg>
-      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true">
-        <mask id="cut"><rect width="24" height="24" fill="#fff"/><circle cx="15.6" cy="10" r="7.6" fill="#000"/></mask>
-        <circle cx="11.5" cy="12.5" r="9" fill="currentColor" mask="url(#cut)"/>
-        <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/>
-      </svg>
+    <section class="slide in" aria-label="Cover">
       <div class="inner">
-        <p class="ar bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-        <p class="bismillah-en">In the name of Allah, the Most Gracious, the Most Merciful</p>
-        <h1 class="names"><b>Aqib</b><i>&amp;</i><b>Fiza</b></h1>
-        <p class="ar cover-title" lang="ar" dir="rtl">دعوة زفاف</p>
-        <p class="cover-sub">Wedding Invitation</p>
+        <div class="arch">
+          <svg viewBox="0 0 300 420" fill="none" aria-hidden="true">
+            <path d="M8 420 V196 C8 120 120 84 150 8 C180 84 292 120 292 196 V420 Z" fill="rgba(217,180,95,.06)"/>
+            <path class="draw" pathLength="1" d="M8 420 V196 C8 120 120 84 150 8 C180 84 292 120 292 196 V420" stroke="url(#gold)" stroke-width="2.2"/>
+            <path class="draw" pathLength="1" d="M20 420 V198 C20 130 124 96 150 28 C176 96 280 130 280 198 V420" stroke="url(#gold)" stroke-width="1" opacity=".7"/>
+          </svg>
+          <div class="arch-content">
+            <svg class="crescent" viewBox="0 0 24 24" aria-hidden="true">
+              <mask id="cut"><rect width="24" height="24" fill="#fff"/><circle cx="15.6" cy="10" r="7.6" fill="#000"/></mask>
+              <circle cx="11.5" cy="12.5" r="9" fill="currentColor" mask="url(#cut)"/>
+              <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/>
+            </svg>
+            <p class="ar bismillah" lang="ar" dir="rtl"><span>بِسْمِ اللَّهِ</span><span>الرَّحْمَٰنِ الرَّحِيمِ</span></p>
+            <p class="bismillah-en">In the name of Allah, the Most Gracious, the Most Merciful</p>
+            <h1 class="names"><b>Aqib</b><i>&amp;</i><b>Fiza</b></h1>
+            <p class="ar arch-title" lang="ar" dir="rtl">دعوة زفاف</p>
+            <p class="arch-sub">Wedding Invitation</p>
+          </div>
+        </div>
+        <p class="hint">Swipe to open
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </p>
       </div>
     </section>
 
     <!-- Page 2 -->
     <section class="slide" aria-label="The couple">
       <div class="inner">
-        <p class="ar salaam" lang="ar" dir="rtl">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ</p>
-        <p class="invite">With the grace of Allah, we joyfully invite you to the wedding of</p>
-        <p class="person">Mohammad Aqib Ansari</p>
-        <p class="of">son of Nisar Ahmed Afzal Ahmed</p>
-        <div class="divider"><svg class="star"><use href="#star"/></svg></div>
-        <p class="person">Fiza Ansari</p>
-        <p class="of">daughter of Mehboob Ansari</p>
-        <div class="verse">
+        <p class="ar salaam rise" style="--d:.05s" lang="ar" dir="rtl">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ</p>
+        <p class="invite rise" style="--d:.15s">With the grace of Allah, we joyfully invite you to the wedding of</p>
+        <p class="person rise" style="--d:.3s">Mohammad Aqib Ansari</p>
+        <p class="of rise" style="--d:.38s">son of Nisar Ahmed Afzal Ahmed</p>
+        <div class="divider rise" style="--d:.5s"><svg class="star"><use href="#star"/></svg></div>
+        <p class="person rise" style="--d:.6s">Fiza Ansari</p>
+        <p class="of rise" style="--d:.68s">daughter of Late Mehboob Ansari</p>
+        <div class="verse rise" style="--d:.85s">
           <p class="ar" lang="ar" dir="rtl">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
-          <p class="en">And among His signs is that He created mates for you, that you may find tranquility in them, and placed affection and mercy between you.</p>
-          <small>Surah Ar-Rum, verse 21</small>
+          <p class="ur" lang="ur" dir="rtl">اور اس کی نشانیوں میں سے ہے کہ اس نے تمہارے لیے تمہاری ہی جنس سے جوڑے بنائے تاکہ تم ان سے سکون پاؤ، اور اس نے تمہارے درمیان محبت اور رحمت رکھ دی۔</p>
+          <small lang="ur" dir="rtl">سورۃ الروم، آیت ۲۱</small>
         </div>
       </div>
     </section>
@@ -280,27 +351,27 @@
     <!-- Page 3 -->
     <section class="slide" aria-label="Events and venue">
       <div class="inner">
-        <h2>Join us</h2>
-        <article class="ev">
+        <h2 class="rise" style="--d:.05s">Join us</h2>
+        <article class="ev rise" style="--d:.2s">
           <div class="ev-date"><b>28</b><span>Nov 2026</span></div>
           <div>
             <h3>Nikah <span class="ar" lang="ar" dir="rtl">نِكَاح</span></h3>
             <p><strong>Saturday, 2:00 PM</strong><br>After Zuhr prayer, <span id="masjid">in the Masjid</span></p>
           </div>
         </article>
-        <article class="ev">
+        <article class="ev rise" style="--d:.4s">
           <div class="ev-date"><b>29</b><span>Nov 2026</span></div>
           <div>
             <h3>Walima <span class="ar" lang="ar" dir="rtl">وَلِيمَة</span></h3>
             <p><strong>Sunday, 11:00 AM</strong><br>At the same venue</p>
           </div>
         </article>
-        <div class="venue">
+        <div class="venue rise" style="--d:.65s">
           <h2>Venue</h2>
-          <p class="addr">Nisar Ahmed<small>Usrauli, Kadipur, Jaunpur, Uttar Pradesh</small></p>
+          <p class="addr">Nisar Ahmed<small>Usrauli, Madiyahoon, Jaunpur, Uttar Pradesh</small></p>
           <div class="actions">
             <a class="btn primary" target="_blank" rel="noopener"
-               href="https://www.google.com/maps/search/?api=1&query=Usrauli%2C+Kadipur%2C+Jaunpur%2C+Uttar+Pradesh">Get directions</a>
+               href="https://www.google.com/maps/search/?api=1&query=Usrauli%2C+Madiyahoon%2C+Jaunpur%2C+Uttar+Pradesh">Get directions</a>
             <button class="btn" type="button" id="ics">Add to calendar</button>
           </div>
         </div>
@@ -310,23 +381,23 @@
     <!-- Page 4 -->
     <section class="slide" aria-label="Best compliments and countdown">
       <div class="inner">
-        <h2>With the best compliments of</h2>
-        <ul class="list">
-          <li>Irshad Ahmed</li><li>Israr Ahmed</li>
-          <li>Ansari Ahmed</li><li>Zahid Ansari</li>
-          <li>Shahid Ansari</li><li>Saquib Ansari</li>
-          <li>Wahid Ansari</li><li>Abid Ansari</li>
+        <h2 class="rise" style="--d:.05s">With the best compliments of</h2>
+        <ul class="list rise" style="--d:.2s">
+          <li>Mo. Tajammul Hussain</li><li>Mo. Irshad Ahmed</li><li>Mo. Israr Ahmed</li>
+          <li>Mo. Ansar Ahmed</li><li>Mo. Dr. Zahid Ansari</li>
+          <li>Mo. Shahid Ansari</li><li>Mo. Hafiz Saquib Ansari</li>
+          <li>Mo. Wahid Ansari</li><li>Mo. Abid Ansari</li>
         </ul>
-        <div class="dua">
+        <div class="dua rise" style="--d:.4s">
           <p class="ar" lang="ar" dir="rtl">بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
           <p class="en">May Allah bless you both and bring you together in goodness.</p>
         </div>
-        <p class="closing">Aapki aamad ke muntazir<small>Awaiting your presence, in shaa Allah</small></p>
-        <div class="actions">
+        <p class="closing rise" style="--d:.55s">Aapki aamad ke muntazir<small>Awaiting your presence, in shaa Allah</small></p>
+        <div class="actions rise" style="--d:.65s">
           <a class="btn" id="share" target="_blank" rel="noopener" href="#">Share on WhatsApp</a>
           <a class="btn" id="call" href="#" hidden>Call to confirm</a>
         </div>
-        <div class="timer-wrap">
+        <div class="timer-wrap rise" style="--d:.8s">
           <p class="timer-title" id="timer-title">Counting down to the Nikah</p>
           <div class="timer" id="timer" role="timer">
             <div class="cell"><b id="d">--</b><span>days</span></div>
@@ -357,7 +428,7 @@
   const WALIMA_START = "2026-11-29T11:00:00+05:30";
   const MASJID_NAME  = "";   // e.g. "Jama Masjid, Usrauli" (leave empty to show "in the Masjid")
   const RSVP_PHONE   = "";   // e.g. "+919876543210" (leave empty to hide the call button)
-  const VENUE_TEXT   = "Nisar Ahmed, Usrauli, Kadipur, Jaunpur, Uttar Pradesh";
+  const VENUE_TEXT   = "Nisar Ahmed, Usrauli, Madiyahoon, Jaunpur, Uttar Pradesh";
   // --------------------
 
   const $ = id => document.getElementById(id);
@@ -367,7 +438,22 @@
   if (MASJID_NAME) $("masjid").textContent = "at " + MASJID_NAME;
   if (RSVP_PHONE) { $("call").href = "tel:" + RSVP_PHONE; $("call").hidden = false; }
 
+  // Floating gold dust
+  if (!reduce) {
+    const dust = $("dust");
+    for (let i = 0; i < 16; i++) {
+      const p = document.createElement("i");
+      p.style.setProperty("--x", (Math.random() * 100).toFixed(1) + "%");
+      p.style.setProperty("--s", (3 + Math.random() * 4).toFixed(1) + "px");
+      p.style.setProperty("--t", (11 + Math.random() * 10).toFixed(1) + "s");
+      p.style.setProperty("--dl", (-Math.random() * 18).toFixed(1) + "s");
+      p.style.setProperty("--dx", (Math.random() * 60 - 30).toFixed(0) + "px");
+      dust.appendChild(p);
+    }
+  }
+
   // Pages
+  const card = $("card");
   const track = $("track");
   const slides = [...track.querySelectorAll(".slide")];
   const dots = $("dots");
@@ -389,7 +475,15 @@
     $("prev").disabled = i === 0;
     $("next").disabled = i === slides.length - 1;
   }
-  track.addEventListener("scroll", sync, { passive: true });
+  let raf = 0;
+  track.addEventListener("scroll", () => {
+    sync();
+    if (reduce || raf) return;
+    raf = requestAnimationFrame(() => {
+      card.style.setProperty("--sx", track.scrollLeft + "px");
+      raf = 0;
+    });
+  }, { passive: true });
   addEventListener("resize", () => { track.scrollTo({ left: current() * track.clientWidth }); sync(); });
   $("prev").addEventListener("click", () => go(current() - 1));
   $("next").addEventListener("click", () => go(current() + 1));
@@ -398,6 +492,12 @@
     if (e.key === "ArrowLeft")  { e.preventDefault(); go(current() - 1); }
   });
   sync();
+
+  // Reveal each page's content as it comes into view
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => e.target.classList.toggle("in", e.isIntersecting));
+  }, { root: track, threshold: 0.6 });
+  slides.forEach(s => io.observe(s));
 
   // Timer
   const target = new Date(NIKAH_START).getTime();
@@ -411,7 +511,11 @@
     $("d").textContent = Math.floor(s / 86400);
     $("h").textContent = pad(Math.floor((s % 86400) / 3600));
     $("m").textContent = pad(Math.floor((s % 3600) / 60));
-    $("s").textContent = pad(s % 60);
+    const sec = pad(s % 60), sEl = $("s");
+    if (sEl.textContent !== sec) {
+      sEl.textContent = sec;
+      sEl.classList.remove("pop"); void sEl.offsetWidth; sEl.classList.add("pop");
+    }
     return true;
   }
   if (tick()) { const t = setInterval(() => { if (!tick()) clearInterval(t); }, 1000); }
