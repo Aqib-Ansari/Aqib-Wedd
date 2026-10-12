@@ -266,6 +266,65 @@
     @keyframes pop { 0% { transform: translateY(-4px); opacity: .35; } 100% { transform: none; opacity: 1; } }
   }
   @media (prefers-reduced-motion: reduce) { .dust { display: none; } }
+
+  /* ---------- Hidden poem (easter egg) ---------- */
+  .names b:last-child { -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+  .egg {
+    position: absolute; inset: 0; z-index: 20;
+    display: grid; place-items: center; padding: 1.6rem 1.4rem;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 38%, rgba(240,213,138,.16), transparent 70%),
+      var(--tile),
+      linear-gradient(180deg, #05302a 0%, #031c18 100%);
+    opacity: 0; visibility: hidden;
+    transition: opacity .9s ease, visibility 0s linear .9s;
+    overflow: hidden; cursor: pointer;
+  }
+  .egg.open { opacity: 1; visibility: visible; transition: opacity .9s ease; }
+  .egg::before {
+    content: ""; position: absolute; inset: .55rem; pointer-events: none;
+    border: 1px solid rgba(217,180,95,.55);
+    box-shadow: inset 0 0 0 5px rgba(3,28,24,.9), inset 0 0 0 6px rgba(217,180,95,.22);
+  }
+  .egg-close {
+    position: absolute; top: 1.15rem; right: 1.15rem; z-index: 2;
+    width: 2rem; height: 2rem; display: grid; place-items: center;
+    background: none; border: 1px solid rgba(217,180,95,.4); border-radius: 50%;
+    color: var(--gold); cursor: pointer;
+  }
+  .egg-close svg { width: .8rem; height: .8rem; }
+  .egg-petals { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .egg-petals i {
+    position: absolute; top: -8%; left: var(--x); width: var(--s); height: var(--s);
+    background: linear-gradient(135deg, var(--gold-hi), var(--gold-lo));
+    border-radius: 80% 0 80% 0; opacity: 0;
+  }
+  .egg.open .egg-petals i { animation: eggfall var(--t) linear var(--dl) infinite; }
+  @keyframes eggfall {
+    0%   { transform: translate3d(0,0,0) rotate(0deg); opacity: 0; }
+    10%  { opacity: .75; }
+    90%  { opacity: .55; }
+    100% { transform: translate3d(var(--dx), 112vh, 0) rotate(420deg); opacity: 0; }
+  }
+  .egg-body { position: relative; z-index: 1; text-align: center; max-width: 21rem; }
+  .egg-body .star { width: 1.2rem; height: 1.2rem; margin: 0 auto; display: block; }
+  .egg-top { margin-bottom: 1.1rem; }
+  .egg-poem { list-style: none; font-family: var(--serif); font-style: italic; font-size: clamp(1.02rem, 4.4vw, 1.22rem); line-height: 1.7; color: var(--ivory); }
+  .egg-poem li, .egg-sign, .egg-hint, .egg-top {
+    opacity: 0; transform: translateY(10px); filter: blur(5px);
+    transition: opacity 1.1s ease, transform 1.1s ease, filter 1.1s ease;
+  }
+  .egg.open .egg-poem li, .egg.open .egg-sign, .egg.open .egg-hint, .egg.open .egg-top {
+    opacity: 1; transform: none; filter: none; transition-delay: var(--d);
+  }
+  .egg-poem li:first-child { color: var(--gold-hi); }
+  .egg-poem li:last-child { margin-top: .35rem; color: var(--gold-hi); }
+  .egg-poem li:last-child em { font-family: "Great Vibes", "Amiri", cursive; font-style: normal; font-size: 1.55em; line-height: 1; padding: 0 .1em; }
+  .egg-sign { margin-top: 1.1rem; font-family: "Great Vibes", "Amiri", cursive; font-size: 1.7rem; color: var(--gold); }
+  .egg-hint { margin-top: 1.1rem; font-family: var(--sans); font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--mist); }
+  @media (prefers-reduced-motion: reduce) {
+    .egg, .egg-poem li, .egg-sign, .egg-hint, .egg-top { transition-duration: .01s !important; transition-delay: 0s !important; filter: none; transform: none; }
+  }
 </style>
 </head>
 <body>
@@ -420,6 +479,26 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
     </button>
   </nav>
+
+  <div class="egg" id="egg" role="dialog" aria-modal="true" aria-label="A poem for Fiza" aria-hidden="true">
+    <div class="egg-petals" id="egg-petals" aria-hidden="true"></div>
+    <button class="egg-close" id="egg-close" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <div class="egg-body">
+      <div class="egg-top" style="--d:.5s"><svg class="star"><use href="#star"/></svg></div>
+      <ul class="egg-poem">
+        <li style="--d:1.2s">Main main na rahu main tum ban jaoon.</li>
+        <li style="--d:2.4s">Teri yaadon ki main dhun ban jaoon</li>
+        <li style="--d:3.6s">Tere saanson ki hawa ban jaoon.</li>
+        <li style="--d:4.8s">Tere honthon ki dua ban jaoon.</li>
+        <li style="--d:6s">Tere Ishq mein main fana ho jaoon.</li>
+        <li style="--d:7.4s">Tere kaayaa ki <em>Fiza</em> ban jaoon.</li>
+      </ul>
+      <p class="egg-sign" style="--d:9s">- Aqib Ansari</p>
+      <p class="egg-hint" style="--d:10.5s">Tap to close</p>
+    </div>
+  </div>
 </main>
 
 <script>
@@ -553,6 +632,46 @@
     a.click();
     URL.revokeObjectURL(a.href);
   });
+
+  // Hidden poem: tap "Fiza" on the cover 5 times
+  (() => {
+    const egg = $("egg"), fiza = document.querySelector(".names b:last-child");
+    if (!egg || !fiza) return;
+    if (!reduce) {
+      const box = $("egg-petals");
+      for (let i = 0; i < 20; i++) {
+        const p = document.createElement("i");
+        p.style.setProperty("--x", (Math.random() * 100).toFixed(1) + "%");
+        p.style.setProperty("--s", (7 + Math.random() * 8).toFixed(0) + "px");
+        p.style.setProperty("--t", (9 + Math.random() * 8).toFixed(1) + "s");
+        p.style.setProperty("--dl", (-Math.random() * 14).toFixed(1) + "s");
+        p.style.setProperty("--dx", (Math.random() * 90 - 45).toFixed(0) + "px");
+        box.appendChild(p);
+      }
+    }
+    let taps = 0, last = 0, openedAt = 0;
+    // Any tap elsewhere breaks the streak
+    document.addEventListener("click", e => { if (!fiza.contains(e.target)) taps = 0; }, true);
+    fiza.addEventListener("click", () => {
+      const now = Date.now();
+      taps = now - last < 1500 ? taps + 1 : 1;
+      last = now;
+      if (taps >= 5) { taps = 0; openEgg(); }
+    });
+    function openEgg() {
+      openedAt = Date.now();
+      egg.classList.add("open");
+      egg.setAttribute("aria-hidden", "false");
+      $("egg-close").focus({ preventScroll: true });
+    }
+    function closeEgg() {
+      egg.classList.remove("open");
+      egg.setAttribute("aria-hidden", "true");
+    }
+    egg.addEventListener("click", () => { if (Date.now() - openedAt > 600) closeEgg(); });
+    $("egg-close").addEventListener("click", e => { e.stopPropagation(); closeEgg(); });
+    addEventListener("keydown", e => { if (e.key === "Escape" && egg.classList.contains("open")) closeEgg(); });
+  })();
 </script>
 </body>
 </html>
